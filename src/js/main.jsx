@@ -10,9 +10,18 @@ import '../styles/index.css'
 
 // components
 import Home from './components/Home';
+import SecondsCounter from "./components/SecondsCounter";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Home/>
-  </React.StrictMode>,
-)
+const root = ReactDOM.createRoot(document.getElementById("root"));
+const startTime = Date.now();
+const tick = () => {
+  const secondsMore = Math.floor((Date.now() - startTime) / 1000);
+  root.render(
+    <React.StrictMode>
+      <Home />
+      <SecondsCounter seconds={secondsMore} />
+    </React.StrictMode>
+  );
+};
+
+setInterval(tick, 1000);
